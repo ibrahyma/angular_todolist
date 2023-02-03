@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="tasks$" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="finished">
+        <th mat-header-cell *matHeaderCellDef>État de la tâche</th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary"
+                          [checked]="element.finished"
+                          (change)="onCheckFinishStatus(element)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Titre</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'strikethrough': element.finished}">{{ element.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'strikethrough': element.finished}"> {{ element.description }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deadline">
+        <th mat-header-cell *matHeaderCellDef>Deadline</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'strikethrough': element.finished}"> {{ element.deadline | date: 'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="modify">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <a [routerLink]="'/tasks/' + element.id + '/modify'" mat-mini-fab color="primary" aria-label="Modifier la tâche">
+                <mat-icon>update</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button (click)="onDelete(element)" mat-mini-fab color="warn" aria-label="Supprimer la tâche">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
