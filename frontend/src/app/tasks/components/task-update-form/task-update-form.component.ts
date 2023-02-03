@@ -16,6 +16,7 @@ export class TaskUpdateFormComponent implements OnInit, OnDestroy {
     task!: Task
     id!: number
     isAnUpdate!: boolean
+    loaded: boolean = false
 
     constructor(private taskService: TaskService,
                 private route: ActivatedRoute,
@@ -42,7 +43,11 @@ export class TaskUpdateFormComponent implements OnInit, OnDestroy {
                     description: [this.task.description],
                     deadline: [new Date(this.task.deadline), [Validators.required] ],
                 })
+                this.loaded = true
             })
+        }
+        else {
+            this.loaded = true
         }
     }
 

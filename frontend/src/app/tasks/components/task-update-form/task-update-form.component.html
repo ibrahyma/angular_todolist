@@ -1,28 +1,34 @@
 <form [formGroup]="updateTaskForm" (ngSubmit)="isAnUpdate ? onUpdate(task) : onCreate()">
-    <h1>{{ isAnUpdate ? task.title : "Nouvelle tâche"}}</h1>
-    <div>
+    <h1 *ngIf="!loaded">Chargement...</h1>
+    <h1 *ngIf="loaded">{{ isAnUpdate ? task.title : "Nouvelle tâche"}}</h1>
+    <ng-container *ngIf="!loaded">
+        <mat-spinner mode="indeterminate"></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="loaded">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" formControlName="title">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Deadline</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="deadline">
+                <mat-hint>Format MM/JJ/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
         <mat-form-field appearance="fill">
-            <mat-label>Titre</mat-label>
-            <input matInput type="text" formControlName="title">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Deadline</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="deadline">
-            <mat-hint>Format MM/JJ/AAAA</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
-    <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-    <button *ngIf="isAnUpdate" mat-fab extended color="primary" type="submit" [disabled]="updateTaskForm.invalid">
-        <mat-icon>update</mat-icon>
-        Modifier
-    </button>
-    <button *ngIf="!isAnUpdate" mat-fab extended color="primary" type="submit" [disabled]="updateTaskForm.invalid">
-        <mat-icon>add</mat-icon>
-        Créer
-    </button>
+        <button *ngIf="isAnUpdate" mat-fab extended color="primary" type="submit" [disabled]="updateTaskForm.invalid">
+            <mat-icon>update</mat-icon>
+            Modifier
+        </button>
+        <button *ngIf="!isAnUpdate" mat-fab extended color="primary" type="submit" [disabled]="updateTaskForm.invalid">
+            <mat-icon>add</mat-icon>
+            Créer
+        </button>
+    </ng-container>
 </form>
