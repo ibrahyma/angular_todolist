@@ -1,25 +1,25 @@
 {
-    "tasks": [
-        {
-            "id":  1,
-            "title": "Test Angular",
-            "description": "Test de to do list pour Hiero",
-            "deadline": "11/01/2023",
-            "finished": true
-        },
-        {
-            "id":  2,
-            "title": "Faire les courses",
-            "description": "Bananes, Oranges",
-            "deadline": "04/01/2023",
-            "finished": false
-        },
-        {
-            "id":  3,
-            "title": "Devoir à rendre",
-            "description": "Test de to do list pour Hiero",
-            "deadline": "06/01/2023",
-            "finished": false
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Test Angular",
+      "description": "Test de to do list pour Hiero",
+      "deadline": "11/01/2023",
+      "finished": true
+    },
+    {
+      "id": 2,
+      "title": "Faire les courses",
+      "description": "Bananes, Oranges",
+      "deadline": "04/01/2023",
+      "finished": false
+    },
+    {
+      "id": 3,
+      "title": "Devoir à rendre",
+      "description": "Test de to do list pour Hiero",
+      "deadline": "06/01/2023",
+      "finished": true
+    }
+  ]
 }
